@@ -33,7 +33,7 @@ module.exports = {
     'block-spacing': ['error', 'always'],
     'object-curly-spacing': ['error', 'always'],
     'no-control-regex': ['off'],
-    semi: ['error', 'always'],
+    semi: ['error', 'never'],
     quotes: [
       2,
       'single',

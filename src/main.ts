@@ -5,6 +5,7 @@ import { ConfigProvider } from 'ant-design-vue';
 import ProLayout, { PageContainer } from '@ant-design-vue/pro-layout';
 import router from './router';
 import App from './App.vue';
+import '@/styles/tailwind/index.css';
 
 // not include setup auto imports.
 import 'ant-design-vue/es/modal/style';
