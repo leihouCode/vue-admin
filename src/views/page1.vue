@@ -12,7 +12,7 @@
       <a-button type="primary" @click="handleClick">layout</a-button>
     </template>
   </a-result>
-  <h1 class="text-3xl font-bold underline font">Hello world!</h1>
+  <h1 class="text-3xl font-bold">Hello world!</h1>
 </template>
 
 <script lang="ts" setup>
@@ -26,10 +26,3 @@ const handleClick = () => {
   router.push('/login')
 }
 </script>
-
-<style>
-.demo {
-  @apply;
-}
-</style>
-，，

@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
-import BasicLayout from '../layouts/BasicLayout.vue';
-import BlankLayout from '../layouts/BlankLayout.vue';
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
+import BasicLayout from '../layouts/BasicLayout.vue'
+import BlankLayout from '../layouts/BlankLayout.vue'
 
 // only githubpages preview site used, if use template please remove this check
 // and use `createWebHistory` is recommend
-const hasGithubPages = import.meta.env.VITE_GHPAGES;
+const hasGithubPages = import.meta.env.VITE_GHPAGES
 
 export default createRouter({
   history: hasGithubPages ? createWebHashHistory() : createWebHistory(),
@@ -19,13 +19,13 @@ export default createRouter({
         {
           path: '/welcome',
           name: 'welcome',
-          meta: { title: '欢迎', icon: 'icon-home' },
+          meta: { title: '欢迎' },
           component: () => import('../views/page1.vue'),
         },
         {
           path: '/admins',
           name: 'admins',
-          meta: { title: '管理页', icon: 'icon-setting' },
+          meta: { title: '管理页' },
           component: BlankLayout,
           redirect: () => ({ name: 'page1' }),
           children: [
@@ -53,7 +53,7 @@ export default createRouter({
         {
           path: '/version',
           name: 'version',
-          meta: { title: 'Version', icon: 'icon-Report' },
+          meta: { title: 'Version' },
           component: () => import('../views/detail.vue'),
         },
       ],
@@ -68,10 +68,10 @@ export default createRouter({
         {
           path: '/login',
           name: 'l',
-          meta: { title: '222', icon: 'icon-icon-test' },
+          meta: { title: '222' },
           component: () => import('../views/login/index.vue'),
         },
       ],
     },
   ],
-});
+})
