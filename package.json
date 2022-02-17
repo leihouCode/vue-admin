@@ -46,11 +46,6 @@
     "vite-plugin-package-config": "^0.1.0",
     "vue-tsc": "^0.3.0"
   },
-  "author": {
-    "email": "18x@loacg.com",
-    "name": "Sendya",
-    "url": "https://github.com/sendya"
-  },
   "vite": {
     "optimizeDeps": {
       "include": [

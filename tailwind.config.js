@@ -7,6 +7,7 @@ module.exports = {
       sm: ['12px', '18px'],
       base: ['14px', '20px'],
       lg: ['16px', '24px'],
+      xl: ['20px', '28px'],
     },
   },
 }

@@ -1,10 +1,9 @@
 <template>
-  <div class="mr-[24px]">
+  <div class="mr-[24px] text-white flex items-center">
+    <BellOutlined class="mr-[15px] text-lg" />
+    <UserOutlined class="text-lg mr-[5px]" />
     <a-dropdown>
-      <span class="text-white hover:text-white">
-        用户1
-        <DownOutlined />
-      </span>
+      <a class="text-white hover:text-white">用户</a>
       <template #overlay>
         <a-menu>
           <a-menu-item>
@@ -25,5 +24,5 @@
 </template>
 
 <script setup lang="ts">
-import { UserOutlined, LogoutOutlined, DownOutlined } from '@ant-design/icons-vue'
+import { LogoutOutlined, BellOutlined, UserOutlined } from '@ant-design/icons-vue'
 </script>

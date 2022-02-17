@@ -5,12 +5,11 @@
 declare module 'vue' {
   export interface GlobalComponents {
     AAvatar: typeof import('ant-design-vue/es')['Avatar']
-    AButton: typeof import('ant-design-vue/es')['Button']
     AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
     ADropdown: typeof import('ant-design-vue/es')['Dropdown']
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
-    AResult: typeof import('ant-design-vue/es')['Result']
+    ImageIcon: typeof import('./components/ImageIcon/index.vue')['default']
     SettingDrawer: typeof import('./components/SettingDrawer/index.vue')['default']
   }
 }
