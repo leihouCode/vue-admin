@@ -38,6 +38,7 @@ import { GlobalFooter, getMenuData, clearMenuItem } from '@ant-design-vue/pro-la
 import type { RouteContextProps } from '@ant-design-vue/pro-layout'
 import RightContent from './RightContent/index.vue'
 import { baseConfig } from '@/config/config'
+import { getPathByName } from '@/router/services'
 
 const iconfontUrl = '/iconfont.js'
 const router = useRouter()
@@ -61,8 +62,14 @@ const breadcrumb = computed(() =>
 watchEffect(() => {
   if (router.currentRoute) {
     const matched = router.currentRoute.value.matched.concat()
+    const { activeMenuRouteName = '' } = router.currentRoute.value.meta
     state.selectedKeys = matched.filter(r => r.name !== 'index').map(r => r.path)
     state.openKeys = matched.filter(r => r.path !== router.currentRoute.value.path).map(r => r.path)
+    if (!activeMenuRouteName) return
+    const parentIndex = matched.findIndex(r => r.path === router.currentRoute.value.path) - 1
+    if (parentIndex < 0) return
+    const parentPath = matched[parentIndex].path
+    state.selectedKeys.push(getPathByName(activeMenuRouteName, `${parentPath}/`))
   }
 })
 </script>

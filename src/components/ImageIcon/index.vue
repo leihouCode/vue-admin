@@ -1,5 +1,5 @@
 <template>
-  <img :src="`/src/assets/icons/${props.name}.png`" class="w-[16px]" />
+  <img :src="`/src/assets/icons/${props.name}.png`" :style="imgStyle" />
   <!--  <img :src="imgSrc" />-->
 </template>
 
@@ -17,7 +17,10 @@ const props = defineProps({
   },
 })
 
+const imgStyle = computed(() => {
+  return ` width: ${+props.width}px;`
+})
+
 // const icons = import.meta.globEager('@/assets/icons/*')
-const imgSrc = new URL(`../assets/icons/${props.name}.png`, import.meta.url).href
-// const imgSrc = `@/assets/icons/${props.name}.png`
+// const imgSrc = new URL(`../assets/icons/${props.name}.png`, import.meta.url).href
 </script>
