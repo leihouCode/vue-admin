@@ -3,13 +3,8 @@ import BasicLayout from '../layouts/BasicLayout.vue'
 import BlankLayout from '../layouts/BlankLayout.vue'
 import { configureRoutes } from '@/router/modules/configure'
 
-console.log('==>', configureRoutes)
-// only githubpages preview site used, if use template please remove this check
-// and use `createWebHistory` is recommend
-const hasGithubPages = import.meta.env.VITE_GHPAGES
-
 export default createRouter({
-  history: hasGithubPages ? createWebHashHistory() : createWebHistory(),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',

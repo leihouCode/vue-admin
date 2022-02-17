@@ -53,6 +53,6 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['@ant-design/icons-vue', 'ant-design-vue'],
+    include: ['@ant-design/icons-vue', 'ant-design-vue', 'lodash-es'],
   },
 })
