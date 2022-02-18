@@ -13,6 +13,7 @@ declare module 'vue' {
     FlowDesign: typeof import('./components/FlowDesign/index.vue')['default']
     ImageIcon: typeof import('./components/ImageIcon/index.vue')['default']
     SettingDrawer: typeof import('./components/SettingDrawer/index.vue')['default']
+    StageMenu: typeof import('./components/FlowDesign/stageMenu.vue')['default']
   }
 }
 

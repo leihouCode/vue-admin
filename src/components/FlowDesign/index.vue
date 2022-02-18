@@ -6,8 +6,9 @@
 </template>
 
 <script lang="ts" setup>
-import { Graph, Shape, Addon, Cell, CellView, Node } from '@antv/x6'
+import { Graph, Shape, Addon, Cell, CellView, Node, Edge } from '@antv/x6'
 import { reactive, onMounted } from 'vue'
+import { Menu, Dropdown } from 'ant-design-vue'
 import { swimplate } from './swimlane'
 
 const data = reactive({
@@ -67,7 +68,7 @@ const init = () => {
         },
       },
       anchor: 'center',
-      connectionPoint: 'anchor',
+      // connectionPoint: 'anchor',
       allowBlank: false,
       snap: {
         radius: 20,
@@ -103,31 +104,28 @@ const init = () => {
         },
       },
     },
-    resizing: false,
-    rotating: false,
-    selecting: {
-      enabled: true,
-      rubberband: true,
-      showNodeSelectionBox: true,
-    },
     snapline: true,
     keyboard: true,
     clipboard: true,
     // 泳道图的平移逻辑
     translating: {
       restrict(cellView: CellView) {
+        console.log('translating cell view', cellView.cell)
         const cell = cellView.cell as Node
         const parentId = cell.prop('parent')
-        if (parentId) {
-          const parentNode = graph.getCellById(parentId) as Node
-          if (parentNode) {
-            return parentNode.getBBox().moveAndExpand({
-              x: 0,
-              y: 30,
-              width: 0,
-              height: -30,
-            })
-          }
+        console.log('has parentId', parentId)
+        console.log('type', cell.prop('type'))
+        const cellType = cell.prop('type')
+        if (cellType === 'stencil' || !parentId) return cell.getBBox()
+        const parentNode = graph.getCellById(parentId) as Node
+        if (parentNode) {
+          console.log('parent BBOX', parentNode.getBBox())
+          return parentNode.getBBox().moveAndExpand({
+            x: 0,
+            y: 30,
+            width: 0,
+            height: -30,
+          })
         }
         return cell.getBBox()
       },
@@ -239,6 +237,36 @@ const init = () => {
     const ports = container.querySelectorAll('.x6-port-body') as NodeListOf<SVGElement>
     showPorts(ports, false)
   })
+
+  // 连线的监听
+  graph.on('edge:connected', e => {
+    const { id: currentEdgeId } = e.edge
+    const cells: Cell[] = graph.getCells()
+    const currentEdge: any = cells.find(c => c.id === currentEdgeId)
+    const { source, target } = currentEdge.store.data
+    const newEdge = new Shape.Edge({
+      id: `${source.cell}2`,
+      shape: 'lane-edge',
+      source: source.cell,
+      target: target.cell,
+      zIndex: 10,
+      attrs: {
+        line: {
+          stroke: '#A2B1C3',
+          strokeWidth: 2,
+          targetMarker: {
+            name: 'block',
+            width: 12,
+            height: 8,
+          },
+        },
+      },
+    })
+    console.log('new edge', newEdge)
+    cells.push(newEdge)
+
+    graph.resetCells(cells)
+  })
   // #endregion
 
   // #region 初始化图形
@@ -339,6 +367,9 @@ const init = () => {
         },
       },
       ports: { ...ports },
+      parent: '1',
+      type: 'rect',
+      zIndex: 1000,
     },
     true,
   )
@@ -585,6 +616,7 @@ const init = () => {
   const cells: Cell[] = []
   swimplate.forEach(item => {
     if (item.shape === 'lane-edge') {
+      console.log('=====>', item)
       cells.push(graph.createEdge(item))
     } else {
       cells.push(graph.createNode(item))

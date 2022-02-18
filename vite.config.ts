@@ -14,9 +14,15 @@ export default defineConfig({
     PKG: JSON.stringify(pkg.dependencies),
   },
   resolve: {
+    // alias: {
+    //   '@': path.resolve(__dirname, 'src')
+    // },
     alias: {
       '@': path.resolve(__dirname, 'src'),
-    }
+      '@antv/x6': '@antv/x6/lib',
+      '@antv/x6-vue3-shape': '@antv/x6-vue3-shape/lib',
+  }
+
   },
   plugins: [
     vue(),
