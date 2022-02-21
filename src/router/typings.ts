@@ -3,4 +3,5 @@ export enum RouteName {
   PRODUCT_LIST = 'ProductList',
   PRODUCT_ADD = 'ProductAdd',
   PRODUCT_DETAIL = 'ProductDetail',
+  FLOW_WORKBENCH = 'FlowWorkbench',
 }

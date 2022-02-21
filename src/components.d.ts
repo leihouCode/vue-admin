@@ -10,6 +10,7 @@ declare module 'vue' {
     ADropdown: typeof import('ant-design-vue/es')['Dropdown']
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
+    AResult: typeof import('ant-design-vue/es')['Result']
     FlowDesign: typeof import('./components/FlowDesign/index.vue')['default']
     ImageIcon: typeof import('./components/ImageIcon/index.vue')['default']
     SettingDrawer: typeof import('./components/SettingDrawer/index.vue')['default']

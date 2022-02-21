@@ -18,7 +18,7 @@ const props = defineProps({
 })
 
 const imgStyle = computed(() => {
-  return ` width: ${+props.width}px;`
+  return ` width: ${+props.width}px; height: ${+props.width}px;`
 })
 
 // const icons = import.meta.globEager('@/assets/icons/*')

@@ -7,6 +7,7 @@
     <div style="height: 120vh">
       产品管理列表页
       <a-button type="primary" @click="handleAdd">新增产品</a-button>
+      <a-button @click="handleGoFlow">流程工作台</a-button>
     </div>
   </basic-page>
 </template>
@@ -26,5 +27,9 @@ const handleLayout = () => {
 
 const handleAdd = () => {
   router.push({ name: RouteName.PRODUCT_DETAIL })
+}
+
+const handleGoFlow = () => {
+  router.push('/config')
 }
 </script>

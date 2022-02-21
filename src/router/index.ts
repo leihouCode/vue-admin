@@ -2,6 +2,8 @@ import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router
 import BasicLayout from '../layouts/BasicLayout.vue'
 import BlankLayout from '../layouts/BlankLayout.vue'
 import { configureRoutes } from '@/router/modules/configure'
+import { RouteName } from '@/router/typings'
+import { getPathByName } from '@/router/services'
 
 export default createRouter({
   history: createWebHistory(),
@@ -62,6 +64,21 @@ export default createRouter({
           name: 'l',
           meta: { title: '222' },
           component: () => import('../views/login/index.vue'),
+        },
+      ],
+    },
+    {
+      path: '/demo',
+      name: 'demo',
+      meta: { title: '工作台配置' },
+      component: BlankLayout,
+      redirect: '/config',
+      children: [
+        {
+          path: '/config',
+          name: RouteName.FLOW_WORKBENCH,
+          meta: { title: 'ddd' },
+          component: () => import('@/views/workbench/demo.vue'),
         },
       ],
     },
