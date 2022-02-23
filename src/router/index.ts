@@ -54,15 +54,15 @@ export default createRouter({
     },
     {
       path: '/app',
-      name: 'login',
-      meta: { title: 'Login' },
+      name: 'app',
+      meta: { title: '系统' },
       component: BlankLayout,
-      redirect: '/login',
+      redirect: getPathByName(RouteName.LOGIN),
       children: [
         {
-          path: '/login',
-          name: 'l',
-          meta: { title: '222' },
+          path: getPathByName(RouteName.LOGIN),
+          name: RouteName.LOGIN,
+          meta: { title: '登录' },
           component: () => import('../views/login/index.vue'),
         },
       ],

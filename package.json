@@ -62,12 +62,15 @@
         "ant-design-vue/es/breadcrumb/style",
         "ant-design-vue/es/button/style",
         "ant-design-vue/es/card/style",
+        "ant-design-vue/es/checkbox/style",
         "ant-design-vue/es/col/style",
         "ant-design-vue/es/config-provider/style",
         "ant-design-vue/es/descriptions/style",
         "ant-design-vue/es/divider/style",
         "ant-design-vue/es/drawer/style",
         "ant-design-vue/es/dropdown/style",
+        "ant-design-vue/es/form/style",
+        "ant-design-vue/es/input/style",
         "ant-design-vue/es/layout/style",
         "ant-design-vue/es/menu/style",
         "ant-design-vue/es/message/style",
@@ -83,6 +86,7 @@
         "ant-design-vue/es/switch/style",
         "ant-design-vue/es/tag/style",
         "lodash",
+        "pinia",
         "vue",
         "vue-router"
       ]

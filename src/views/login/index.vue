@@ -1,32 +1,48 @@
 <template>
-  <page-container title="login" sub-title="show current project dependencies">
-    <template #content>
-      <strong>Content Area</strong>
-    </template>
-    <template #extra>
-      <strong>Extra Area</strong>
-    </template>
-    <template #extraContent>
-      <strong>ExtraContent Area</strong>
-    </template>
-    <template #tags>
-      <a-tag>Tag1</a-tag>
-      <a-tag color="pink">Tag2</a-tag>
-    </template>
-    <a-card title="Project Version">
-      <p v-for="d in new Array(10)" :key="d">text block...</p>
-    </a-card>
-    <a-button @click="handleLogin">login</a-button>
-    <a-button type="primary">test</a-button>
-  </page-container>
+  <div class="login">
+    <div class="login-container">
+      <img class="login-img" src="@/assets/images/login.png" />
+      <component :is="currentForm" @trigger="handleTrigger"></component>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { useRouter, useRoute } from 'vue-router';
+import { shallowRef } from 'vue'
+import LoginForm from './components/login-form.vue'
+import ResetPasswordForm from './components/reset-password-form.vue'
 
-const router = useRouter();
-const handleLogin = () => {
-  console.log('login');
-  router.push('/');
-};
+const formComponents: any = {
+  Login: LoginForm,
+  ResetPassword: ResetPasswordForm,
+}
+const currentForm = shallowRef(LoginForm)
+const handleTrigger = (formName: string) => {
+  currentForm.value = formComponents[formName]
+}
 </script>
+
+<style lang="less" scoped>
+.login {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/src/assets/images/login-bg.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  font-size: 12px;
+  @apply flex justify-center items-center;
+
+  &-container {
+    width: 720px;
+    height: 416px;
+    border-radius: 0 16px 16px 0;
+    @apply flex bg-white;
+  }
+
+  &-img {
+    width: 320px;
+    height: 416px;
+  }
+}
+</style>

@@ -13,10 +13,12 @@ export default defineConfig({
   define: {
     PKG: JSON.stringify(pkg.dependencies),
   },
+  server: {
+    port: 3090,
+    open: true,
+    proxy: {}
+  },
   resolve: {
-    // alias: {
-    //   '@': path.resolve(__dirname, 'src')
-    // },
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@antv/x6': '@antv/x6/lib',

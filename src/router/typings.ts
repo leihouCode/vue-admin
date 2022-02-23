@@ -1,4 +1,5 @@
 export enum RouteName {
+  LOGIN = 'login',
   CONFIGURE_MANAGEMENT = 'ConfigureManagement',
   PRODUCT_LIST = 'ProductList',
   PRODUCT_ADD = 'ProductAdd',

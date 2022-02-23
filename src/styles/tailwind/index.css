@@ -2,4 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+* antd的全局样式会和tailwind的base样式冲突
+* 图标不对齐
+*/
+@layer base {
+  svg {
+    vertical-align: initial;
+  }
+}
 
