@@ -24,7 +24,7 @@ const CONFIG = {
 
 export const swimplate = [
   {
-    id: '1',
+    id: '12123',
     shape: 'lane',
     type: 'stencil',
     width: CONFIG.width,
@@ -81,7 +81,7 @@ export const swimplate = [
     // ],
   },
   {
-    id: '2',
+    id: '2312423',
     shape: 'lane',
     type: 'stencil',
     width: 300,
@@ -93,7 +93,7 @@ export const swimplate = [
     label: '02 系统实施',
   },
   {
-    id: '3',
+    id: '33412',
     shape: 'lane',
     type: 'stencil',
     width: 300,
@@ -105,7 +105,7 @@ export const swimplate = [
     label: '03 系统上线',
   },
   {
-    id: '4',
+    id: '44422',
     shape: 'lane',
     type: 'stencil',
     width: 300,

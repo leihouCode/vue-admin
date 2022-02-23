@@ -32,17 +32,6 @@ export default class FdStencil extends FdGraph {
     })
 
     this.stencil = stencil
-    // this.addNodes(stencil)
-  }
-
-  addNodes(stencil: any) {
-    const graph = super.getGraph()
-    console.log('==>', super.graph)
-    if (!graph) return
-    const Nodes = nodes.map(item => {
-      return this.graph.createNode(item)
-    })
-    stencil.load([Nodes], 'group1')
   }
 
   getModel(): any {

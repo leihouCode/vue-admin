@@ -1,5 +1,7 @@
 import { Graph } from '@antv/x6'
+import { FlowOptions } from '@/components/FlowDesign/typings'
 
+// 连接桩
 const ports = {
   groups: {
     top: {
@@ -137,7 +139,7 @@ export default class Register {
             strokeWidth: 1,
           },
           'name-rect': {
-            width: 300,
+            width: FlowOptions.SWIMLANE_WIDTH,
             height: 48,
             fill: '#fff',
             stroke: '#F4F5F7',
@@ -162,7 +164,7 @@ export default class Register {
       'lane-rect',
       {
         inherit: 'rect',
-        width: 300,
+        width: FlowOptions.SWIMLANE_WIDTH,
         height: 60,
         attrs: {
           body: {

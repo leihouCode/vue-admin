@@ -1,6 +1,8 @@
 import { Cell, CellView, Graph, Node, Shape } from '@antv/x6'
 import { Options as GraphOptions } from '@antv/x6/src/graph/options'
 import { Scroller } from '@antv/x6/src/addon/scroller'
+import { random } from 'lodash'
+import { FlowOptions } from '@/components/FlowDesign/typings'
 
 export default class FdGraph {
   // graph typing
@@ -85,16 +87,16 @@ export default class FdGraph {
       // 泳道图的平移逻辑
       translating: {
         restrict(cellView: CellView) {
-          console.log('translating cell view', cellView.cell)
+          // console.log('translating cell view', cellView.cell)
           const cell = cellView.cell as Node
           const parentId = cell.prop('parent')
-          console.log('has parentId', parentId)
-          console.log('type', cell.prop('type'))
+          // console.log('has parentId', parentId)
+          // console.log('type', cell.prop('type'))
           const cellType = cell.prop('type')
           if (cellType === 'stencil' || !parentId) return cell.getBBox()
           const parentNode = graph.getCellById(parentId) as Node
           if (parentNode) {
-            console.log('parent BBOX', parentNode.getBBox())
+            // console.log('parent BBOX', parentNode.getBBox())
             return parentNode.getBBox().moveAndExpand({
               x: 0,
               y: 30,
@@ -208,7 +210,7 @@ export default class FdGraph {
       const { source, target } = currentEdge.store.data
       console.log('===>', currentEdge.store.data)
       const newEdge = new Shape.Edge({
-        id: `${source.cell}2`,
+        id: `${source.cell}${random(100)}`,
         shape: 'lane-edge',
         source: source.cell,
         target: target.cell,
@@ -231,6 +233,19 @@ export default class FdGraph {
 
       graph.resetCells(cells)
     })
+
+    graph.on('node:added', (e: any) => {
+      console.log('node:added', e)
+      console.log(e.cell.getBBox())
+      const { cell } = e
+      const { x } = cell.getBBox()
+      const cells = this.getSwimlaneCells()
+      console.log('cells', cells)
+      const index = this.getSwimlaneIndex(x)
+      const parentId = this.getNodeInSwimlaneId(cells, index)
+      console.log('parent id', parentId)
+      // this.setNodeInSwimlaneParentId(cells, parentId, index)
+    })
   }
 
   getModel() {
@@ -239,5 +254,27 @@ export default class FdGraph {
 
   getGraph() {
     return this.graph
+  }
+
+  getSwimlaneIndex(x: number): number {
+    return +(x / FlowOptions.SWIMLANE_WIDTH).toFixed() - 1
+  }
+
+  getSwimlaneCells(): Cell[] {
+    const cells: Cell[] = this.graph.getCells()
+    return cells.filter(e => e.store.data.type === 'stencil')
+  }
+
+  getNodeInSwimlaneId(cells: Cell[], index = 0): string {
+    return cells[index].id
+  }
+
+  setNodeInSwimlaneParentId(cells, parentId: string, index): void {
+    console.log(cells)
+    cells[index].store.data.parent = parentId
+    cells.push(cells[index])
+    this.graph.resetCells(cells)
+    // this.graph.resetCells(cells)
+    // this.graph.zoomToFit({ padding: 10, maxScale: 1 })
   }
 }

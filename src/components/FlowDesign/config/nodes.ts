@@ -12,6 +12,11 @@ export const nodes: Node.Metadata[] = [
       body: {
         rx: 6,
         ry: 6,
+        fill: 'rgba(74, 129, 254, 0.1)',
+        stroke: '#4A81FE',
+      },
+      label: {
+        fill: '#3A3A3D',
       },
     },
   },
@@ -20,12 +25,17 @@ export const nodes: Node.Metadata[] = [
     label: '输出材料',
     size: {
       width: 66,
-      height: 66,
+      height: 36,
     },
     attrs: {
       body: {
         rx: 6,
         ry: 6,
+        fill: '#fff',
+        stroke: '#4A81FE',
+      },
+      label: {
+        fill: '#4A81FE',
       },
     },
   },
